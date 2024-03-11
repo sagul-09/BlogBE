@@ -20,4 +20,14 @@ const addBlog = async (req, res) => {
         res.status(500).json({message: "Blog creation failed"});
     }};
 
-export {getAllBlogs, addBlog};
+
+const updateBlog = async (req, res) => {
+    try{
+        const updatedBlog = await blogSchema.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        res.status(200).json({message: "Blog updated successfully", updatedBlog});
+    }catch(err){
+        res.status(500).json({message: "Blog update failed"});
+    }};
+
+export {getAllBlogs, addBlog, updateBlog};
+
